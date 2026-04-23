@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>IoT University | Contact Our Experts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+    <header class="navbar">
+        <div class="container nav-wrapper">
+            <div class="nav-left">
+                <div class="logo-group">
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                    </div>
+                    <h2 class="logo-text">IoT University</h2>
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="applications.html">IoT Applications</a>
+                    <a href="technologies.html">Technologies</a>
+                    <a href="contact.html" class="active">Contact Us</a>
+                </nav>
+            </div>
+            <div class="nav-right">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                    <input class="search-input" placeholder="Search programs..." type="text"/>
+                </div>
+                <button class="btn btn-primary" onclick="location.href='login.html'">Portal Login</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content-bottom slide-up">
+                <h1>Contact Our Experts</h1>
+                <p class="description-large">Join the vanguard of the Fourth Industrial Revolution. Our teams are ready to guide your IoT journey.</p>
+            </div>
+        </section>
+
+        <div class="container py-8">
+            <div class="grid-3-col">
+                <div class="col-span-2">
+                    <div class="form-card">
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="full-name">Full Name</label>
+                                    <input id="full-name" type="text" placeholder="Dr. Jane Smith" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email-address">Email Address</label>
+                                    <input id="email-address" type="email" placeholder="jane@example.com" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <select id="subject">
+                                    <option>Admissions Inquiry</option>
+                                    <option>Research Collaboration</option>
+                                    <option>Technical Support</option>
+                                    <option>General Information</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" placeholder="Tell us more about your interests in IoT..." rows="6" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-large">
+                                Send Message <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="sidebar-info">
+                    <div class="info-card-accent">
+                        <h2>Connect with Us</h2>
+                        <div class="contact-methods">
+                            <div class="method-item">
+                                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                                <div>
+                                    <strong>Innovation Campus</strong>
+                                    <p>100 Cyber Road, Silicon Valley</p>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                                <div>
+                                    <strong>Admissions</strong>
+                                    <p>admissions@iot-university.edu</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-links-row">
+                            <p>Follow Our Research</p>
+                            <div class="social-icons">
+                                <a href="#" class="social-btn" aria-label="Visit website"><i class="fa-solid fa-globe" aria-hidden="true"></i></a>
+                                <a href="#" class="social-btn" aria-label="Share"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="map-placeholder">
+                        <div class="map-overlay">
+                            <button class="btn btn-white" type="button">
+                                <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                                Get Directions
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-bottom">
+            <div class="logo-group opacity-60">
+                <div class="logo-icon small">
+                    <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                </div>
+                <span class="logo-text">IoT University</span>
+            </div>
+            <p>&copy; 2024 Institute of Technology. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

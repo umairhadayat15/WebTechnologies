@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>IoT University | Applications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+    <header class="navbar">
+        <div class="container nav-wrapper">
+            <div class="nav-left">
+                <div class="logo-group">
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                    </div>
+                    <h2 class="logo-text">IoT University</h2>
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="applications.html" class="active">IoT Applications</a>
+                    <a href="technologies.html">Technologies</a>
+                    <a href="contact.html">Contact Us</a>
+                </nav>
+            </div>
+            <div class="nav-right">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                    <input class="search-input" placeholder="Search programs..." type="text"/>
+                </div>
+                <button class="btn btn-primary" onclick="location.href='login.html'">Portal Login</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-8">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            <span class="current">Applications</span>
+        </nav>
+
+        <section class="hero-text-only slide-up">
+            <h1>Industry Applications</h1>
+            <p class="description-large">Exploring how connected systems are transforming global industries, from precision healthcare to autonomous urban infrastructure.</p>
+        </section>
+
+        <div class="app-grid">
+            <div class="app-card">
+                <div class="app-image">
+                    <img src="https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?auto=format&fit=crop&w=800" alt="Smart city infrastructure">
+                </div>
+                <div class="app-content">
+                    <div class="card-icon-small"><i class="fa-solid fa-city" aria-hidden="true"></i></div>
+                    <h2>Smart Cities</h2>
+                    <p>Optimizing urban living through intelligent traffic management, automated waste collection, and energy-efficient street lighting systems.</p>
+                    <ul class="styled-list">
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Real-time Traffic Flow</li>
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Smart Grid Energy Distribution</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="app-card invert">
+                <div class="app-content">
+                    <div class="card-icon-small"><i class="fa-solid fa-industry" aria-hidden="true"></i></div>
+                    <h2>Industrial IoT (IIoT)</h2>
+                    <p>Revolutionizing manufacturing with predictive maintenance, asset tracking, and real-time supply chain visibility.</p>
+                    <ul class="styled-list">
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Predictive Machine Repair</li>
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Automated Quality Control</li>
+                    </ul>
+                </div>
+                <div class="app-image">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800" alt="Industrial automation environment">
+                </div>
+            </div>
+
+            <div class="app-card">
+                <div class="app-image">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800" alt="Medical IoT devices">
+                </div>
+                <div class="app-content">
+                    <div class="card-icon-small"><i class="fa-solid fa-stethoscope" aria-hidden="true"></i></div>
+                    <h2>Healthcare (IoMT)</h2>
+                    <p>Enhancing patient outcomes through remote monitoring, smart implants, and integrated hospital asset management.</p>
+                    <ul class="styled-list">
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Remote Patient Vitals Monitoring</li>
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Smart Medication Dispensers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <section class="dark-card">
+            <div class="case-study-header">
+                <span class="badge">Featured Research</span>
+                <h2 class="text-white">Precision Agriculture 2026</h2>
+                <p class="text-muted">How low-power WAN networks are saving 40% more water in arid climate farming.</p>
+            </div>
+            <div class="stats-mini-grid">
+                <div class="stat-box">
+                    <span class="stat-number">40%</span>
+                    <span class="stat-label">Water Efficiency</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">15%</span>
+                    <span class="stat-label">Crop Yield Increase</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-bottom">
+            <div class="logo-group">
+                <div class="logo-icon small">
+                    <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                </div>
+                <span class="logo-text">IoT University</span>
+            </div>
+            <p>&copy; 2024 Institute of Technology - Connected Systems Division.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

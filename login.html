@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>IoT University | Portal Login</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .login-page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .login-panel-left {
+            background:
+                radial-gradient(ellipse 80% 60% at 30% 40%, rgba(79,247,200,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 80% 80%, rgba(99,202,255,0.08) 0%, transparent 60%),
+                linear-gradient(160deg, #080c12 0%, #0d1220 100%);
+            border-right: 1px solid rgba(99,202,255,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-panel-left::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(79,247,200,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79,247,200,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: gridPulse 6s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(60px);
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(79,247,200,0.08);
+            top: -60px;
+            left: -60px;
+            animation: orbFloat 8s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 200px;
+            height: 200px;
+            background: rgba(99,202,255,0.07);
+            bottom: 80px;
+            right: 40px;
+            animation: orbFloat 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            33% { transform: translate(20px,-20px) scale(1.05); }
+            66% { transform: translate(-10px,15px) scale(0.97); }
+        }
+
+        .panel-logo {
+            position: relative;
+            z-index: 2;
+        }
+
+        .panel-illustration {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .panel-tagline {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 3rem);
+            font-weight: 800;
+            color: #e8f0fe;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.25rem;
+        }
+
+        .panel-tagline span {
+            background: linear-gradient(90deg, #4ff7c8, #63caff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .panel-desc {
+            color: #7a8ba6;
+            font-size: 0.95rem;
+            max-width: 380px;
+            line-height: 1.75;
+            margin-bottom: 2.5rem;
+        }
+
+        .panel-features {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .panel-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #7a8ba6;
+            font-size: 0.875rem;
+        }
+
+        .panel-features li i {
+            color: #4ff7c8;
+            font-size: 16px;
+            background: rgba(79,247,200,0.1);
+            padding: 7px;
+            border-radius: 6px;
+            flex-shrink: 0;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .panel-stats {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            gap: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(99,202,255,0.1);
+        }
+
+        .panel-stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .panel-stat-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #4ff7c8;
+        }
+
+        .panel-stat-label {
+            font-size: 0.72rem;
+            color: #3d4e62;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+        }
+
+        .login-panel-right {
+            background: #080c12;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            position: relative;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+            animation: formEntrance 0.7s cubic-bezier(0.22,1,0.36,1) both;
+            animation-delay: 0.15s;
+        }
+
+        @keyframes formEntrance {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .login-header h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #e8f0fe;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .login-header p {
+            color: #7a8ba6;
+            font-size: 0.9rem;
+        }
+
+        .auth-tabs {
+            display: flex;
+            background: #111827;
+            border: 1px solid rgba(99,202,255,0.1);
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 2rem;
+            gap: 4px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 0.6rem;
+            text-align: center;
+            background: none;
+            border: none;
+            border-radius: 7px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #7a8ba6;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .auth-tab.active {
+            background: linear-gradient(135deg, rgba(79,247,200,0.15), rgba(99,202,255,0.1));
+            color: #4ff7c8;
+            border: 1px solid rgba(79,247,200,0.25);
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            position: relative;
+        }
+
+        .input-group label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #7a8ba6;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 0.9rem;
+            color: #3d4e62;
+            font-size: 16px;
+            pointer-events: none;
+            transition: color 0.25s ease;
+            width: 18px;
+            text-align: center;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            background: #111827;
+            border: 1px solid rgba(99,202,255,0.12);
+            border-radius: 8px;
+            padding: 0.75rem 1rem 0.75rem 2.7rem;
+            color: #e8f0fe;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #4ff7c8;
+            box-shadow: 0 0 0 3px rgba(79,247,200,0.1);
+        }
+
+        .input-wrapper:focus-within .input-icon {
+            color: #4ff7c8;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #3d4e62;
+        }
+
+        .pw-toggle {
+            position: absolute;
+            right: 0.9rem;
+            background: none;
+            border: none;
+            color: #3d4e62;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .pw-toggle:hover {
+            color: #4ff7c8;
+        }
+
+        .pw-toggle i {
+            font-size: 16px;
+        }
+
+        .input-wrapper.valid input {
+            border-color: rgba(79,247,200,0.5);
+        }
+
+        .input-wrapper.invalid input {
+            border-color: rgba(255,80,80,0.6);
+        }
+
+        .field-error {
+            font-size: 0.75rem;
+            color: #ff6b6b;
+            display: none;
+            margin-top: 0.2rem;
+        }
+
+        .input-group.has-error .field-error {
+            display: block;
+        }
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: -0.25rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: #7a8ba6;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #4ff7c8;
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            font-size: 0.85rem;
+            color: #63caff;
+            font-weight: 500;
+        }
+
+        .forgot-link:hover {
+            color: #4ff7c8;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.85rem;
+            background: linear-gradient(135deg, #4ff7c8 0%, #63caff 100%);
+            color: #080c12;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(79,247,200,0.35);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .login-btn:hover::after {
+            left: 100%;
+        }
+
+        .btn-spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(8,12,18,0.3);
+            border-top-color: #080c12;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            flex-shrink: 0;
+        }
+
+        .login-btn.loading .btn-text {
+            display: none;
+        }
+
+        .login-btn.loading .btn-spinner {
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(99,202,255,0.1);
+        }
+
+        .divider span {
+            font-size: 0.75rem;
+            color: #3d4e62;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+        }
+
+        .sso-row {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .sso-btn {
+            flex: 1;
+            padding: 0.65rem;
+            background: #111827;
+            border: 1px solid rgba(99,202,255,0.12);
+            border-radius: 8px;
+            color: #7a8ba6;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: all 0.25s ease;
+        }
+
+        .sso-btn:hover {
+            border-color: rgba(79,247,200,0.3);
+            color: #e8f0fe;
+        }
+
+        .sso-btn i {
+            font-size: 16px;
+        }
+
+        .login-footer-text {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.82rem;
+            color: #3d4e62;
+        }
+
+        .login-footer-text a {
+            color: #63caff;
+        }
+
+        .login-footer-text a:hover {
+            color: #4ff7c8;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #0e1a2e;
+            border: 1px solid rgba(79,247,200,0.3);
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #e8f0fe;
+            font-size: 0.875rem;
+            font-weight: 500;
+            z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+            min-width: 280px;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast i {
+            color: #4ff7c8;
+            font-size: 18px;
+        }
+
+        .btn-text i {
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .login-page {
+                grid-template-columns: 1fr;
+            }
+
+            .login-panel-left {
+                display: none;
+            }
+
+            .login-panel-right {
+                padding: 2rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-page">
+
+    <div class="login-panel-left">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+
+        <div class="panel-logo">
+            <a href="index.html" style="display:inline-flex; align-items:center; gap:0.6rem; text-decoration:none;">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                </div>
+                <span class="logo-text">IoT University</span>
+            </a>
+        </div>
+
+        <div class="panel-illustration">
+            <h2 class="panel-tagline">
+                Your Gateway to<br>
+                <span>Connected Intelligence</span>
+            </h2>
+            <p class="panel-desc">
+                Access your personalised learning dashboard, research resources, lab bookings, and global IoT community — all in one place.
+            </p>
+
+            <ul class="panel-features">
+                <li>
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                    Access 200+ IoT courses and certifications
+                </li>
+                <li>
+                    <i class="fa-solid fa-flask" aria-hidden="true"></i>
+                    Book virtual and physical hardware labs
+                </li>
+                <li>
+                    <i class="fa-solid fa-users" aria-hidden="true"></i>
+                    Connect with 12,000+ global IoT professionals
+                </li>
+                <li>
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                    Track your progress with live analytics
+                </li>
+                <li>
+                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                    Enterprise-grade security &amp; privacy
+                </li>
+            </ul>
+        </div>
+
+        <div class="panel-stats">
+            <div class="panel-stat-item">
+                <span class="panel-stat-num">12K+</span>
+                <span class="panel-stat-label">Students</span>
+            </div>
+            <div class="panel-stat-item">
+                <span class="panel-stat-num">200+</span>
+                <span class="panel-stat-label">Courses</span>
+            </div>
+            <div class="panel-stat-item">
+                <span class="panel-stat-num">98%</span>
+                <span class="panel-stat-label">Satisfaction</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="login-panel-right">
+        <div class="login-box">
+
+            <div class="login-header">
+                <h1>Welcome back</h1>
+                <p>Sign in to your student or faculty portal</p>
+            </div>
+
+            <div class="auth-tabs" role="tablist" aria-label="Authentication options">
+                <button class="auth-tab active" id="tab-login" role="tab" aria-selected="true" aria-controls="panel-login" type="button" onclick="switchTab('login')">Sign In</button>
+                <button class="auth-tab" id="tab-register" role="tab" aria-selected="false" aria-controls="panel-register" type="button" onclick="switchTab('register')">Register</button>
+            </div>
+
+            <div id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+                <form class="login-form" id="loginForm" novalidate>
+
+                    <div class="input-group" id="group-email">
+                        <label for="login-email">Email Address</label>
+                        <div class="input-wrapper" id="wrapper-email">
+                            <i class="fa-regular fa-envelope input-icon" aria-hidden="true"></i>
+                            <input
+                                type="email"
+                                id="login-email"
+                                name="email"
+                                placeholder="you@iot-university.edu"
+                                autocomplete="email"
+                                required
+                                aria-describedby="email-error"
+                            >
+                        </div>
+                        <span class="field-error" id="email-error" role="alert">Please enter a valid email address.</span>
+                    </div>
+
+                    <div class="input-group" id="group-password">
+                        <label for="login-password">Password</label>
+                        <div class="input-wrapper" id="wrapper-password">
+                            <i class="fa-solid fa-lock input-icon" aria-hidden="true"></i>
+                            <input
+                                type="password"
+                                id="login-password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                                aria-describedby="password-error"
+                            >
+                            <button type="button" class="pw-toggle" onclick="togglePassword('login-password', this)" aria-label="Toggle password visibility">
+                                <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <span class="field-error" id="password-error" role="alert">Password must be at least 8 characters.</span>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="remember-me" name="remember">
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="login-btn" id="loginBtn">
+                        <span class="btn-text">
+                            Sign In <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </span>
+                        <span class="btn-spinner" aria-hidden="true"></span>
+                    </button>
+
+                    <div class="divider"><span>or continue with</span></div>
+
+                    <div class="sso-row">
+                        <button type="button" class="sso-btn">
+                            <i class="fa-brands fa-google" aria-hidden="true"></i> Google
+                        </button>
+                        <button type="button" class="sso-btn">
+                            <i class="fa-brands fa-microsoft" aria-hidden="true"></i> Microsoft
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="panel-register" role="tabpanel" aria-labelledby="tab-register" style="display:none;">
+                <form class="login-form" id="registerForm" novalidate>
+
+                    <div class="input-group" id="group-reg-name">
+                        <label for="reg-name">Full Name</label>
+                        <div class="input-wrapper" id="wrapper-reg-name">
+                            <i class="fa-regular fa-user input-icon" aria-hidden="true"></i>
+                            <input type="text" id="reg-name" name="name" placeholder="Dr. Jane Smith" autocomplete="name" required>
+                        </div>
+                        <span class="field-error" id="reg-name-error" role="alert">Full name is required.</span>
+                    </div>
+
+                    <div class="input-group" id="group-reg-email">
+                        <label for="reg-email">Email Address</label>
+                        <div class="input-wrapper" id="wrapper-reg-email">
+                            <i class="fa-regular fa-envelope input-icon" aria-hidden="true"></i>
+                            <input type="email" id="reg-email" name="email" placeholder="you@iot-university.edu" required>
+                        </div>
+                        <span class="field-error" id="reg-email-error" role="alert">Please enter a valid email address.</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="reg-role">Account Type</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-id-badge input-icon" aria-hidden="true"></i>
+                            <input
+                                type="text"
+                                id="reg-role"
+                                name="role"
+                                placeholder="Student / Faculty / Researcher"
+                                list="role-options"
+                            >
+                            <datalist id="role-options">
+                                <option value="Student">
+                                <option value="Faculty">
+                                <option value="Researcher">
+                                <option value="Industry Partner">
+                            </datalist>
+                        </div>
+                    </div>
+
+                    <div class="input-group" id="group-reg-password">
+                        <label for="reg-password">Create Password</label>
+                        <div class="input-wrapper" id="wrapper-reg-password">
+                            <i class="fa-solid fa-lock input-icon" aria-hidden="true"></i>
+                            <input type="password" id="reg-password" name="password" placeholder="Min. 8 characters" required>
+                            <button type="button" class="pw-toggle" onclick="togglePassword('reg-password', this)" aria-label="Toggle password visibility">
+                                <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+
+                        <div id="strength-bar" style="display:none; margin-top:6px;">
+                            <div style="height:4px; background:#1a2236; border-radius:4px; overflow:hidden;">
+                                <div id="strength-fill" style="height:100%; width:0%; border-radius:4px; transition:all 0.3s ease;"></div>
+                            </div>
+                            <span id="strength-label" style="font-size:0.72rem; color:#7a8ba6; margin-top:4px; display:block;"></span>
+                        </div>
+                        <span class="field-error" id="reg-password-error" role="alert">Password must be at least 8 characters.</span>
+                    </div>
+
+                    <label class="remember-me" style="align-items:flex-start; gap:0.6rem;">
+                        <input type="checkbox" id="terms" name="terms" required style="margin-top:3px;">
+                        <span>I agree to the <a href="#" style="color:#63caff;">Terms of Service</a> and <a href="#" style="color:#63caff;">Privacy Policy</a></span>
+                    </label>
+
+                    <button type="submit" class="login-btn" id="registerBtn">
+                        <span class="btn-text">
+                            Create Account <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </span>
+                        <span class="btn-spinner" aria-hidden="true"></span>
+                    </button>
+                </form>
+            </div>
+
+            <p class="login-footer-text">
+                &copy; 2024 IoT University &nbsp;·&nbsp;
+                <a href="index.html">Back to Home</a> &nbsp;·&nbsp;
+                <a href="contact.html">Support</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+    <span id="toast-msg">Signed in successfully! Redirecting…</span>
+</div>
+
+<script>
+    function switchTab(tab) {
+        const loginPanel = document.getElementById('panel-login');
+        const registerPanel = document.getElementById('panel-register');
+        const loginTab = document.getElementById('tab-login');
+        const registerTab = document.getElementById('tab-register');
+
+        if (tab === 'login') {
+            loginPanel.style.display = 'block';
+            registerPanel.style.display = 'none';
+            loginTab.classList.add('active');
+            registerTab.classList.remove('active');
+            loginTab.setAttribute('aria-selected', 'true');
+            registerTab.setAttribute('aria-selected', 'false');
+        } else {
+            loginPanel.style.display = 'none';
+            registerPanel.style.display = 'block';
+            registerTab.classList.add('active');
+            loginTab.classList.remove('active');
+            registerTab.setAttribute('aria-selected', 'true');
+            loginTab.setAttribute('aria-selected', 'false');
+        }
+    }
+
+    function togglePassword(inputId, btn) {
+        const input = document.getElementById(inputId);
+        const icon = btn.querySelector('i');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.className = 'fa-regular fa-eye-slash';
+        } else {
+            input.type = 'password';
+            icon.className = 'fa-regular fa-eye';
+        }
+    }
+
+    document.getElementById('reg-password').addEventListener('input', function () {
+        const val = this.value;
+        const bar = document.getElementById('strength-bar');
+        const fill = document.getElementById('strength-fill');
+        const label = document.getElementById('strength-label');
+
+        if (val.length === 0) {
+            bar.style.display = 'none';
+            return;
+        }
+
+        bar.style.display = 'block';
+
+        let score = 0;
+        if (val.length >= 8) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+
+        const levels = [
+            { width: '25%', color: '#ff6b6b', text: 'Weak' },
+            { width: '50%', color: '#f7c94f', text: 'Fair' },
+            { width: '75%', color: '#63caff', text: 'Good' },
+            { width: '100%', color: '#4ff7c8', text: 'Strong' }
+        ];
+
+        const lvl = levels[score - 1] || levels[0];
+        fill.style.width = lvl.width;
+        fill.style.background = lvl.color;
+        label.textContent = lvl.text;
+        label.style.color = lvl.color;
+    });
+
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        document.getElementById('toast-msg').textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+    function validateField(wrapperId, groupId, errorId, isValid) {
+        const wrapper = document.getElementById(wrapperId);
+        const group = document.getElementById(groupId);
+        if (isValid) {
+            wrapper?.classList.add('valid');
+            wrapper?.classList.remove('invalid');
+            group?.classList.remove('has-error');
+        } else {
+            wrapper?.classList.add('invalid');
+            wrapper?.classList.remove('valid');
+            group?.classList.add('has-error');
+        }
+        return isValid;
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById('login-email');
+        const password = document.getElementById('login-password');
+        const btn = document.getElementById('loginBtn');
+
+        const emailOk = validateField('wrapper-email', 'group-email', 'email-error',
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value));
+
+        const pwOk = validateField('wrapper-password', 'group-password', 'password-error',
+            password.value.length >= 8);
+
+        if (!emailOk || !pwOk) return;
+
+        btn.classList.add('loading');
+        setTimeout(() => {
+            btn.classList.remove('loading');
+            showToast('Signed in successfully! Redirecting to your dashboard…');
+            setTimeout(() => { window.location.href = 'index.html'; }, 2000);
+        }, 1800);
+    });
+
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('reg-name');
+        const email = document.getElementById('reg-email');
+        const password = document.getElementById('reg-password');
+        const terms = document.getElementById('terms');
+        const btn = document.getElementById('registerBtn');
+
+        const nameOk = validateField('wrapper-reg-name', 'group-reg-name', 'reg-name-error',
+            name.value.trim().length > 1);
+
+        const emailOk = validateField('wrapper-reg-email', 'group-reg-email', 'reg-email-error',
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value));
+
+        const pwOk = validateField('wrapper-reg-password', 'group-reg-password', 'reg-password-error',
+            password.value.length >= 8);
+
+        if (!nameOk || !emailOk || !pwOk || !terms.checked) {
+            if (!terms.checked) showToast('Please accept the Terms of Service to continue.');
+            return;
+        }
+
+        btn.classList.add('loading');
+        setTimeout(() => {
+            btn.classList.remove('loading');
+            showToast('Account created! Welcome to IoT University.');
+            setTimeout(() => switchTab('login'), 2000);
+        }, 1800);
+    });
+
+    document.getElementById('login-email').addEventListener('blur', function () {
+        validateField('wrapper-email', 'group-email', 'email-error',
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value) || this.value === '');
+    });
+
+    document.getElementById('login-password').addEventListener('blur', function () {
+        validateField('wrapper-password', 'group-password', 'password-error',
+            this.value.length >= 8 || this.value === '');
+    });
+</script>
+
+</body>
+</html>

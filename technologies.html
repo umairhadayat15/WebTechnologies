@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>IoT University | Technologies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+    <header class="navbar">
+        <div class="container nav-wrapper">
+            <div class="nav-left">
+                <div class="logo-group">
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                    </div>
+                    <h2 class="logo-text">IoT University</h2>
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="applications.html">IoT Applications</a>
+                    <a href="technologies.html" class="active">Technologies</a>
+                    <a href="contact.html">Contact Us</a>
+                </nav>
+            </div>
+            <div class="nav-right">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                    <input class="search-input" placeholder="Search programs..." type="text"/>
+                </div>
+                <button class="btn btn-primary" onclick="location.href='login.html'">Portal Login</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-8">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            <span class="current">IoT Technologies</span>
+        </nav>
+
+        <section class="hero-text-only slide-up">
+            <h1>IoT Core Technologies</h1>
+            <p class="description-large">An academic overview of the technical architecture enabling the Internet of Things, from silicon level perception to cloud-scale intelligence.</p>
+        </section>
+
+        <div class="tech-tabs-wrapper">
+            <div class="tech-tabs">
+                <button class="tab-btn active" type="button"><i class="fa-solid fa-wave-square" aria-hidden="true"></i> Sensors</button>
+                <button class="tab-btn" type="button"><i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i> Connectivity</button>
+                <button class="tab-btn" type="button"><i class="fa-solid fa-cloud" aria-hidden="true"></i> Cloud</button>
+                <button class="tab-btn" type="button"><i class="fa-solid fa-memory" aria-hidden="true"></i> Edge</button>
+            </div>
+        </div>
+
+        <section class="grid-2">
+            <div class="content-block">
+                <span class="badge">Layer 01</span>
+                <h2 class="section-title">Perception &amp; Sensing</h2>
+                <p>The physical layer represents the interface between the analog world and digital processing. It involves complex circuitry designed to transduce physical phenomena into signals.</p>
+
+                <div class="sub-grid">
+                    <div class="info-card">
+                        <div class="card-icon-small"><i class="fa-solid fa-temperature-three-quarters" aria-hidden="true"></i></div>
+                        <h3>Environmental</h3>
+                        <p>Monitoring atmospheric changes like temperature and humidity.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon-small"><i class="fa-solid fa-person-walking" aria-hidden="true"></i></div>
+                        <h3>Inertial</h3>
+                        <p>MEMS-based accelerometers for high-precision movement tracking.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800" alt="Hardware circuitry">
+                <div class="image-caption">Fig 1.1: MEMS Integration</div>
+            </div>
+        </section>
+
+        <section class="dark-card">
+            <div class="grid-2">
+                <div>
+                    <h2 class="text-white">Connectivity Protocols</h2>
+                    <div class="protocol-list">
+                        <div class="protocol-item">
+                            <i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i>
+                            <div class="protocol-info"><strong>5G / NB-IoT</strong><br><small>Wide Area Network</small></div>
+                            <span class="status-badge green">Low Latency</span>
+                        </div>
+                        <div class="protocol-item">
+                            <i class="fa-brands fa-bluetooth-b" aria-hidden="true"></i>
+                            <div class="protocol-info"><strong>BLE 5.2</strong><br><small>Personal Area Network</small></div>
+                            <span class="status-badge blue">Low Power</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-mini-grid">
+                    <div class="stat-box">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">Reliability</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">10ms</span>
+                        <span class="stat-label">Latency</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-bottom">
+            <div class="logo-group">
+                <div class="logo-icon small">
+                    <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                </div>
+                <span class="logo-text">IoT University</span>
+            </div>
+            <p>&copy; 2024 Institute of Technology - Connected Systems Division.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
